@@ -1,0 +1,97 @@
+//introduction to SASS
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+$primary-color: red;
+$different-color: blue;
+$font-size: 30px;
+$center: center !important;
+
+.container{
+    color: $different-color;
+    .desc{
+        color: $different-color;
+        font-size: $font-size;
+    }
+    .text-center{
+        text-align: $center ;
+    }
+}
+
+
+
+
+// inheritance in sass
+%text-center{
+    text-align: $center;
+}
+
+
+%shared-properties{
+    border: 2px solid grey;
+    padding: 10px 112px;
+    margin: 5px 0;
+    text-align: $center;
+    
+}
+
+
+
+.alerts{
+  
+    .primary-alert{
+        @extend %shared-properties;
+        border-color: blue;
+        color: blue;
+    }
+
+    // .secondary-alert{
+    //     @extend %shared-properties;
+    //     border-color:orangered;
+    //     color: orangered;
+    // }
+
+    // .danger-alert{
+    //     @extend %shared-properties;
+    //     border-color: green;
+    //     color: green;
+    // }
+}
+
+
+
+
+//MiXIMS
+
+@mixin name($properties, $font, $weight) {
+    @extend %shared-properties;
+    border-top: $properties;
+    color: $properties;
+    font-size: $font;
+    font-weight: $weight;
+
+    
+}
+
+.alerts{
+    .secondary-alert{
+        @extend %shared-properties;
+        @include name(orangered, 20px , bold);
+        border-color: orangered;
+    }
+
+    .danger-alert{
+        @extend %shared-properties;
+        @include name(green, 20px , bolder);
+        border-color: green;
+    }
+
+
+    
+
+}
+
+
